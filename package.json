@@ -1,0 +1,25 @@
+{
+  "name": "api-bridge",
+  "version": "1.0.0",
+  "description": "Bots.Business API Bridge for safe API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bots-business/api-bridge.git"
+  },
+  "keywords": [
+    "Bots.Business"
+  ],
+  "author": "Bots.Business",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bots-business/api-bridge/issues"
+  },
+  "homepage": "https://github.com/bots-business/api-bridge#readme",
+  "dependencies": {
+    "fastify": "^3.15.1"
+  }
+}
