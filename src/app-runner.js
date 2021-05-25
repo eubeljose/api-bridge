@@ -30,7 +30,7 @@ function performRun(reply){
 }
 
 fastify.get('/', async (request, reply) => {
-  return { status: 'Api Bridge: OK' }
+  return { status: 'API-Bridge: OK' }
 })
 
 fastify.get('/run', async (request, reply) => {
