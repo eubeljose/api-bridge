@@ -1,0 +1,48 @@
+{
+    "name": "API Bridge",
+    "description": "Bots.Business API Bridge for safe API",
+    "keywords": [
+      "Bots.Business",
+      "safe-api, api-bridge"
+    ],
+    "website": "https://bots.business",
+    "repository": "https://github.com/bots-business/api-bridge",
+    "logo": "",
+    "success_url": "/welcome",
+    "scripts": {
+      "postdeploy": ""
+    },
+    "env": {
+      "WEB_CONCURRENCY": {
+        "description": "The number of processes to run.",
+        "value": "1"
+      }
+    },
+    "formation": {
+      "web": {
+        "quantity": 1,
+        "size": "standard-1x"
+      }
+    },
+    "image": "heroku/node",
+    "addons": [
+      {
+        "plan": "heroku-postgresql",
+        "options": {
+          "version": "9.5"
+        }
+      }
+    ],
+    "buildpacks": [
+      {
+        "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+      }
+    ],
+    "environments": {
+      "test": {
+        "scripts": {
+          "test": ""
+        }
+      }
+    }
+  }
