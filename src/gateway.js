@@ -30,8 +30,8 @@ class Gateway{
   }
 
   addPolicy(filename, content){
-    let Policy = require("./policy_parser");
-    let policy = new Policy(filename, content);
+    let PolicyParser = require("./policy_parser");
+    let policy = new PolicyParser(filename, content);
 
     this.policies.push(policy);
   }
