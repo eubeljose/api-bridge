@@ -1,4 +1,4 @@
-const Todos = require('./gateway');
+const Gateway = require('../src/gateway')
 const assert = require('assert').strict;
 
 describe("unit test", function() {
