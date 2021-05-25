@@ -4,7 +4,7 @@ API https://api.bots.business/v1
 
 # add this api key as parameter
 # store this key in ENV as BB_API_KEY
-SAFE PARAM api_key BB_API_KEY
+SAFE PARAM api_key=BB_API_KEY
 
 # always permitted methods
 ALWAYS GET /bots
