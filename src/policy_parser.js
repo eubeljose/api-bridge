@@ -1,4 +1,4 @@
-class Policy{
+class PolicyParser{
   
   constructor(fileName, content){
     console.log("Read policy: " + fileName + "...");
@@ -132,4 +132,4 @@ class Policy{
   }
 
 }
-module.exports = Policy;
+module.exports = PolicyParser;
