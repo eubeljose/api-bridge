@@ -11,4 +11,4 @@ ALWAYS GET /bots
 ALWAYS GET /bots/{integer}
 
 # ask for permission on bot destroying
-ASK DESTOY /bots/{integer}
+ASK DELETE /bots/{integer}

@@ -8,6 +8,7 @@ class Policy{
 
     this.name = fileName;
     this.safe_params = [];
+    this.methods = [];
     this._parseContent(content);
   }
 
@@ -20,6 +21,8 @@ class Policy{
       if(this._isComment(line)){ continue }
       if(this._parseApiUrl(line)){ continue }
       if(this._parseSafeParam(line)){ continue }
+
+      this._parseMethod(line)
     }
   }
 
@@ -30,7 +33,8 @@ class Policy{
   }
 
   _throwError(title){
-    let err = title + " Policy: " + this.name + ". Line: " + String(this.curLine + 1);
+    let lineIndex = parseInt(this.curLine) + 1;
+    let err = title + " Policy: " + this.name + ". Line: " + lineIndex;
     throw new Error(err);
   }
 
@@ -95,6 +99,35 @@ class Policy{
     this.safe_params.push({
       key: arr_params[0],
       value: process.env[arr_params[1]]
+    })
+  }
+
+  _isMethod(arr){
+    return (arr[0]=="ALWAYS")||(arr[0]=="ASK")
+  }
+
+  isHttpMethodExist(method){
+    return [ "OPTIONS", "GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "TRACE", "CONNECT"].
+      includes(method)
+  }
+
+  _parseMethod(line){
+    let arr = line.split(' ');
+    if(!this._isMethod(arr)){ return }
+
+    let needAsk = ( arr[0] == "ASK" )
+
+    let httpMethod = arr[1]
+    if(!this.isHttpMethodExist(httpMethod)){
+      this._throwError("Http Method do not exist: " + httpMethod) 
+    }
+
+    let path = arr[2]
+
+    this.methods.push({
+      method: httpMethod,
+      path: path,
+      needAsk: needAsk
     })
   }
 
