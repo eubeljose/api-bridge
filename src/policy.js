@@ -86,10 +86,16 @@ class Policy{
       this._throwError("Invalid safe param. Need ENV like key_name=ENV.")
     }
 
-    if(!process.env[arr_params[2]]){
+    let envValue = process.env[arr_params[1]];
+
+    if(!envValue){
       this._throwError("Need set ENV value for " + arr_params[1])
     }
 
+    this.safe_params.push({
+      key: arr_params[0],
+      value: process.env[arr_params[1]]
+    })
   }
 
 }
