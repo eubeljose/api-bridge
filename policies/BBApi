@@ -1,6 +1,6 @@
 # api url
 # only one API per policy file
-API api.bots.business/v1
+API https://api.bots.business/v1
 
 # add this api key as parameter
 # store this key in ENV as BB_API_KEY
