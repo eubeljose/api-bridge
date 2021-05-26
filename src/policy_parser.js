@@ -126,7 +126,7 @@ class PolicyParser{
     let path = arr[2]
 
     this.methods.push({
-      method: httpMethod,
+      http_method: httpMethod,
       path: path,
       needAsk: needAsk
     })

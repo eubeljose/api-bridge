@@ -18,7 +18,7 @@ describe("Unit Test", function() {
         assert.strictEqual(policy.methods.length, 3);
 
         assert.deepEqual(policy.methods[0],
-          { path: "/bots", needAsk: false, method: "GET" }
+          { path: "/bots", needAsk: false, http_method: "GET" }
         );
 
         
@@ -27,12 +27,25 @@ describe("Unit Test", function() {
     it("validate example urls", function() {
       let policy = gateway.policies['BBApi']
 
-      assert.deepEqual(
-        policy.haveMethod("/bots/4454?with_params=true"),
-        { method: "GET", needAsk: false, path: "/bots/:id" }
+      assert.strictEqual(
+        policy.haveMethod({ http_method: "POST", path: "/bots/4454?with_params=true"}),
+        false
       );
-      
-      assert.strictEqual(policy.haveMethod("/other/4454?with_params=true"), false);
+
+      assert.deepEqual(
+        policy.haveMethod({ http_method: "GET", path: "/bots/4454?with_params=true"}),
+        { http_method: "GET", needAsk: false, path: "/bots/:id" }
+      );
+
+      assert.strictEqual(
+        policy.haveMethod({ http_method: "GET", path: "/notexist/4454?with_params=true"}),
+        false
+      );
+
+      assert.strictEqual(
+        policy.haveMethod({ http_method: "GET", path: "/bots/my/4454"}),
+        false
+      );
     });
 
 

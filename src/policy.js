@@ -10,9 +10,9 @@ class Policy{
     this.methods = parsedPolicy.methods;
   }
 
-  _findMethod(path){
+  _findMethod(options){
     // "/bots/22?any_query=true"
-    path = path.split("?")[0]
+    let path = options.path.split("?")[0]
 
     let { pathToRegexp, match, parse, compile } = require("path-to-regexp");
 
@@ -23,6 +23,9 @@ class Policy{
     let test;
     for(let ind in this.methods){
       method = this.methods[ind];
+
+      if(method.http_method!=options.http_method){ continue }
+
       fn = match(method.path)
 
       test = fn(path)
@@ -31,11 +34,23 @@ class Policy{
     return false;
   }
 
-  haveMethod(path){
-    if(!path){ return }
-    if(path==""){ return }
+  _throwErrorIfNeed(options){
+    // TODO: need error throwing
+    if(!options){ return }
+    if(!options.http_method){ return }
 
-    return this._findMethod(path)
+    if(!options.path){ return }
+    if(options.path==""){ return }
+
+    return true
+  }
+
+  haveMethod(options){
+    if(!this._throwErrorIfNeed(options)){
+      throw new Error("need error handling: " + JSON.stringify(options))
+    }
+
+    return this._findMethod(options)
   }
 
 }
