@@ -7,6 +7,7 @@ class PolicyParser{
     }
 
     this.name = fileName;
+    this.api_url = null;
     this.safe_params = [];
     this.methods = [];
     this._parseContent(content);

@@ -4,7 +4,7 @@ class Gateway{
   }
 
   loadPolicies() {
-    this.policies = [];
+    this.policies = {};
 
     const fs = require("fs");
     const policyDir = "policies/"
@@ -30,33 +30,16 @@ class Gateway{
   }
 
   addPolicy(filename, content){
-    let PolicyParser = require("./policy_parser");
-    let policy = new PolicyParser(filename, content);
+    let Policy = require("./policy");
+    let policy = new Policy(filename, content)
 
-    this.policies.push(policy);
+    this.policies[policy.name] = policy;
   }
 
   onPolicyLoadError(err){
     console.log(err)
   }
 
-  haveMethod(url){
-    if(!url){ return }
-    if(url==""){ return }
-
-    let { pathToRegexp, match, parse, compile } = require("path-to-regexp");
-
-    var fn = match("api.bots.business/bots/:id");
-
-    // "api.bots.business/bots/22?any_query=true"
-    url = url.split("?")[0]
-
-    let test = fn(url)
-    if(test){
-      return true
-    }
-    return false
-  }
 
 }
 
