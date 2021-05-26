@@ -8,7 +8,7 @@ SAFE PARAM api_key=BB_API_KEY
 
 # always permitted methods
 ALWAYS GET /bots
-ALWAYS GET /bots/{integer}
+ALWAYS GET /bots/:id
 
 # ask for permission on bot destroying
-ASK DELETE /bots/{integer}
+ASK DELETE /bots/:id
